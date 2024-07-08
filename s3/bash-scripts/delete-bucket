@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+
+# Check if the first argument is provided (bucket name)
+if [ -z "$1" ]; then
+  echo "No bucket name provided. (s3://my-bucket)"
+  exit 1
+fi
+
+BUCKET_NAME=$1
+
+echo "bucket $BUCKET_NAME deleted"
+
+aws s3api delete-bucket \
+--bucket $BUCKET_NAME
