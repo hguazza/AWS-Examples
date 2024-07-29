@@ -1,5 +1,0 @@
-env | grep ""
-whereis bash
-ls -la s3/bash-scripts/
-chmod u+x s3/bash-scripts/*
-aws sts get-caller-identity
