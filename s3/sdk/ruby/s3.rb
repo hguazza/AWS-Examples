@@ -5,17 +5,14 @@ require 'securerandom' # SecureRandom for generating random UUIDs
 # Retrieve the bucket name from environment variables
 bucket_name = ENV['BUCKET_NAME']
 # Define the region for the S3 bucket
-region = 'us-east-2'
+region = 'us-east-1'
 
 # Initialize the S3 client
 client = Aws::S3::Client.new
 
 # Create a new S3 bucket with the specified name and region
 resp = client.create_bucket({
-  bucket: bucket_name, 
-  create_bucket_configuration: {
-    location_constraint: region,
-  },
+  bucket: bucket_name
 })
 
 # Determine the number of random files to create, between 1 and 6
