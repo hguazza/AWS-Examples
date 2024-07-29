@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export AWS_PAGER=""
+
 # Check for bucket name
 if [ -z "$1" ]; then
   echo "No bucket name provided. (s3://my-bucket)"
@@ -8,9 +10,14 @@ fi
 
 BUCKET_NAME=$1
 
+# aws s3api list-objects-v2 \
+#     --bucket $BUCKET_NAME \
+#     --query Contents.Key \
+#     | jq -n '{Objects: [inputs | .[] | {Key: .}]}' > /tmp/delete_objects.json
+
 aws s3api list-objects-v2 \
     --bucket $BUCKET_NAME \
-    --query Contents.Key \
-    | jq -n '{Objects: [inputs | .[] | {Key: .}]}' > /tmp/delete_objects.json
+    --query 'Contents[].{Key: Key}' \
+    | jq -r '{Objects: .}' > /tmp/delete_objects.json
 
 aws s3api delete-objects --bucket $BUCKET_NAME --delete file:///tmp/delete_objects.json

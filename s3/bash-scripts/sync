@@ -10,7 +10,7 @@ fi
 
 # Check for filename prefix
 if [ -z "$2" ]; then
-  echo "No bucket name provided. (s3://my-bucket)"
+  echo "No filename prefix provided. (s3://my-bucket)"
   exit 1
 fi
 
