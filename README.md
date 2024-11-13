@@ -1,2 +1,2 @@
 # AWS-Examples
-Acodebase of all the AWS examples used through AWS Certification Study Courses.
+A codebase of all AWS examples created while studying for AWS Solutions Architect
